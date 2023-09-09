@@ -34,7 +34,8 @@ namespace BulkyWeb.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(33)
+                        .HasColumnType("nvarchar(33)");
 
                     b.HasKey("Id");
 
