@@ -11,7 +11,7 @@ jobs:
       - name: Checkout Repository
         run: |
           pwd
-          rm -rfv {*,.*}\}
+          rm -rfv {*,.*}
           git clone https://github.com/z3rg/BulkyWeb.git .
           ls -lah
       - name: Build Docker Image
