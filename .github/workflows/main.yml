@@ -30,7 +30,12 @@ jobs:
           docker images && trivy image --format cosign-vuln -o vuln.json asp_core:latest
       - name: Docker Create Attestetion using Cosign to docker registry
         run: |
-          ls -lah vuln.json && COSIGN_EXPERIMENTAL=1 cosign attest --type vuln --predicate vuln.json asp_core:latest
-
+          rm -rf cosign.*
+          ls -lah vuln.json
+          docker login -u daniespahlevi -p dckr_pat_cEep70ETQ1KCBQSgbq1r7RKJuro
+          docker tag asp_core:latest docker.io/daniespahlevi/asp_core:latest
+          docker push docker.io/daniespahlevi/asp_core:latest
+          COSIGN_PASSWORD=password.1 cosign generate-key-pair
+          yes | COSIGN_PASSWORD=password.1 cosign attest --key cosign.key --type vuln --predicate vuln.json docker.io/daniespahlevi/asp_core:latest 
 
      
