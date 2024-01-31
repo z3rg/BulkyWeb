@@ -1,0 +1,19 @@
+# Workflow to demo installing a package and executing on a self-hosted runner
+
+ name: file tree
+
+ on:
+   workflow_dispatch:
+
+ jobs:
+
+   file-tree:
+
+     runs-on: self-hosted
+
+     steps:
+     - name: Install tree
+       run: |
+         apt update
+         apt install net-tools
+     
