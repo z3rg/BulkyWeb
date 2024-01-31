@@ -12,6 +12,7 @@ jobs:
         run: |
           rm -rf BulkyWeb
           git clone https://github.com/z3rg/BulkyWeb.git
+          ls -lah
           cd BulkyWeb/
       - name: Build Docker Image
         run: |
