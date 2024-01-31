@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout Repository
         run: |
-          rm -rf BulkyWeb
+          rm -rf *
           git clone https://github.com/z3rg/BulkyWeb.git .
           ls -lah
       - name: Build Docker Image
