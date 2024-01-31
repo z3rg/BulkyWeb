@@ -18,6 +18,7 @@ jobs:
         run: |
           whoami
           id
+          pwd
           docker build -t asp_core .
           docker tag asp_core daniespahlevi/asp_core:latest
       
