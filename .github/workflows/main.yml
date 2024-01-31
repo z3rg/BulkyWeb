@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout Repository
         run: |
-          rm -rf * && git clone https://github.com/z3rg/BulkyWeb.git . && ls -lah
+          pwd && rm -rf * && git clone https://github.com/z3rg/BulkyWeb.git . && ls -lah
       - name: Build Docker Image
         run: |
           whoami && id && pwd && rm -rf vuln.json && docker images && docker rmi --force asp_core && docker build -t asp_core .
