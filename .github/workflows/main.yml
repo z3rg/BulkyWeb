@@ -27,7 +27,7 @@ jobs:
         run: |
           docker images
           trivy image --format cosign-vuln -o vuln.json asp_core:latest
-      - name: Docker Vulnerability Scanning using Trivy
+      - name: Docker Create Attestetion using Cosign to docker registry
         run: |
           ls -lah vuln.json
           COSIGN_EXPERIMENTAL=1 cosign attest --type vuln --predicate vuln.json asp_core:latest
