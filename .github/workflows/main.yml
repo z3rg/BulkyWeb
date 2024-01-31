@@ -1,19 +1,21 @@
-# Workflow to demo installing a package and executing on a self-hosted runner
+name: Build Docker Image and Create Deployment
 
- name: file tree
-
- on:
-   workflow_dispatch:
-
- jobs:
-
-   file-tree:
-
-     runs-on: self-hosted
-
-     steps:
-     - name: Install net-tools
-       run: |
-         sudo apt update
-         sudo apt install net-tools
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    name: Build Docker Image and Deploy
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        run: |
+          git clone https://github.com/z3rg/BulkyWeb.git
+          cd BulkyWeb/
+      - name: Build Docker Image
+        run: |
+          docker build -t asp_core .
+          docker tag asp_core daniespahlevi/asp_core:latest
+      
      
