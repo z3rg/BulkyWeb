@@ -18,7 +18,18 @@ jobs:
           whoami
           id
           pwd
+          rm -rf vuln.json
+          docker images
+          docker rmi --force asp_core
           docker build -t asp_core .
-          docker tag asp_core daniespahlevi/asp_core:latest
-      
+      - name: Docker Vulnerability Scanning using Trivy
+        run: |
+          docker images
+          trivy image --format cosign-vuln -o vuln.json asp_core:latest
+      - name: Docker Vulnerability Scanning using Trivy
+        run: |
+          ls -lah vuln.json
+          COSIGN_EXPERIMENTAL=1 cosign attest --type vuln --predicate vuln.json asp_core:latest
+
+
      
