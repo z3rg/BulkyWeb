@@ -1,5 +1,4 @@
 name: Build Docker Image and Create Deployment
-
 on:
   push:
     branches:
@@ -11,6 +10,7 @@ jobs:
     steps:
       - name: Checkout Repository
         run: |
+          rm -rf BulkyWeb
           git clone https://github.com/z3rg/BulkyWeb.git
           cd BulkyWeb/
       - name: Build Docker Image
